@@ -25,21 +25,16 @@ const Navbar = () => {
       if (decodedToken.exp * 1000 < new Date().getTime()) logout();
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
+    // eslint-disable-next-line
   }, [location]);
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
-      <div className={classes.brandContainer}>
-        <Typography
-          component={Link}
-          to="/"
-          className={classes.heading}
-          variant="h2"
-          align="center"
-        >
+      <Link to="/" className={classes.brandContainer}>
+        <Typography className={classes.heading} variant="h2" align="center">
           Blogzoid
         </Typography>
         <img className={classes.image} src={blogzoid} alt="icon" height="60" />
-      </div>
+      </Link>
       <Toolbar className={classes.toolbar}>
         {user ? (
           <div className={classes.profile}>
