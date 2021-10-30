@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "https://blogzoid.herokuapp.com/" });
+const API = axios.create({ baseURL: "https://blogzoid.netlify.app" });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
@@ -24,5 +24,7 @@ export const likePost = (id) => API.patch(`posts/${id}/likePost`);
 export const updatePost = (id, updatedPost) =>
   API.patch(`/posts/${id}`, updatedPost);
 export const deletePost = (id) => API.delete(`/posts/${id}`);
+export const commentPost = (comment, id) =>
+  API.post(`posts/${id}/commentPost`, { comment });
 export const signIn = (formData) => API.post("/user/signin", formData);
 export const signUp = (formData) => API.post("/user/signup", formData);

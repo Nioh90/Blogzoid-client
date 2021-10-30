@@ -10,16 +10,15 @@ export default makeStyles((theme) => ({
   card: {
     display: "flex",
     width: "100%",
-    backgroundColor: "white",
-    borderRadius: "20px",
     [theme.breakpoints.down("sm")]: {
       flexWrap: "wrap",
-      flexDirection: "column",
+      flexDirection: "column-reverse",
     },
   },
   section: {
     margin: "20px",
     flex: 1,
+    minWidth: "400px",
   },
   imageSection: {
     margin: "20px",
@@ -28,6 +27,8 @@ export default makeStyles((theme) => ({
     },
   },
   recommendedPosts: {
+    border: "5px black solid",
+    borderRadius: "10px",
     display: "flex",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
@@ -40,5 +41,15 @@ export default makeStyles((theme) => ({
     padding: "20px",
     borderRadius: "15px",
     height: "39vh",
+  },
+  commentsOuterContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  commentsInnerContainer: {
+    minWidth: "200px",
+    height: "200px",
+    overflowY: "auto",
+    marginRight: "30px",
   },
 }));

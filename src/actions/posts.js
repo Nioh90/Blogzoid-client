@@ -5,6 +5,7 @@ import {
   DELETE,
   LIKE,
   FETCH_BY_SEARCH,
+  COMMENT,
   START_LOADING,
   END_LOADING,
   FETCH_POST,
@@ -73,10 +74,8 @@ export const updatePost = (id, post) => async (dispatch) => {
 
 export const likePost = (id) => async (dispatch) => {
   try {
-    dispatch({ type: START_LOADING });
     const { data } = await api.likePost(id);
     dispatch({ type: LIKE, payload: data });
-    dispatch({ type: END_LOADING });
   } catch (error) {
     console.log(error.message);
   }
@@ -90,5 +89,15 @@ export const deletePost = (id) => async (dispatch) => {
     dispatch({ type: END_LOADING });
   } catch (error) {
     console.log(error.message);
+  }
+};
+
+export const commentPost = (comment, id) => async (dispatch) => {
+  try {
+    const { data } = await api.commentPost(comment, id);
+    dispatch({ type: COMMENT, payload: data });
+    return data.comments;
+  } catch (error) {
+    console.log(error);
   }
 };
