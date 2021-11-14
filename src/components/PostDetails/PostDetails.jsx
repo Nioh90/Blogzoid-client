@@ -7,6 +7,7 @@ import { useHistory, useParams } from "react-router-dom";
 import {
   CircularProgress,
   Divider,
+  Grid,
   Paper,
   Typography,
 } from "@material-ui/core";
@@ -93,29 +94,39 @@ const PostDetails = () => {
           </Typography>
           <Divider />
           <div className={classes.recommendedPosts}>
-            {recommendedPosts.map(
-              ({ title, message, name, likes, selectedFile, _id }) => (
-                <div
-                  style={{ margin: "20px", cursor: "pointer" }}
-                  onClick={() => openPost(_id)}
-                  key={_id}
-                >
-                  <Typography gutterBottom variant="h6">
-                    {title}
-                  </Typography>
-                  <Typography gutterBottom variant="subtitle2">
-                    {name}
-                  </Typography>
-                  <Typography gutterBottom variant="subtitle2">
-                    {message}
-                  </Typography>
-                  <Typography gutterBottom variant="subtitle1">
-                    Likes: {likes.length}
-                  </Typography>
-                  <img src={selectedFile} alt="Post" width="200px" />
-                </div>
-              )
-            )}
+            <Grid container spacing={2}>
+              {recommendedPosts.map(
+                ({ title, message, name, likes, selectedFile, _id }) => (
+                  <Grid item md={4} lg={3} xl={2}>
+                    <div
+                      style={{
+                        margin: "20px",
+                        cursor: "pointer",
+                        border: "2px black solid",
+                        borderRadius: "10px",
+                        padding: "2%",
+                      }}
+                      onClick={() => openPost(_id)}
+                      key={_id}
+                    >
+                      <Typography gutterBottom variant="h6">
+                        {title}
+                      </Typography>
+                      <Typography gutterBottom variant="subtitle2">
+                        {name}
+                      </Typography>
+                      <Typography gutterBottom variant="subtitle2">
+                        {message.substring(0, 200) + "..."}
+                      </Typography>
+                      <Typography gutterBottom variant="subtitle1">
+                        Likes: {likes.length}
+                      </Typography>
+                      <img src={selectedFile} alt="Post" width="200px" />
+                    </div>
+                  </Grid>
+                )
+              )}
+            </Grid>
           </div>
         </div>
       ) : null}

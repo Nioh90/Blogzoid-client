@@ -120,7 +120,7 @@ const Post = ({ post, setCurrentId }) => {
         </Typography>
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
-            {post.message}
+            {post.message.substring(0, 400) + "..."}
           </Typography>
         </CardContent>
       </ButtonBase>
